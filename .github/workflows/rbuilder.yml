@@ -11,7 +11,7 @@ jobs:
       - name: Prepare
         id: prep
         run: |
-          DOCKER_IMAGE=gaiadev/rbuilder
+          DOCKER_IMAGE=majita/rbuilder
           VERSION=latest
           TAGS="${DOCKER_IMAGE}:${VERSION}"
           echo ::set-output name=tags::${TAGS}
