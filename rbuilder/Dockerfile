@@ -25,6 +25,10 @@ ENV BUILD_SCRIPT ${BUILD_SCRIPT:-/sources/.build.sh}
 # Drop root privileges.
 USER builder:builder
 WORKDIR /sources
+# needed to avoid error: "fatal: detected dubious ownership in repository at '/sources'"
+# check was added because of this vulnerability https://nvd.nist.gov/vuln/detail/cve-2022-24765
+# more context: https://www.kenmuse.com/blog/avoiding-dubious-ownership-in-dev-containers/
+RUN git config --global --add safe.directory /sources
 
 # Mount the application's sources.
 VOLUME [ "/sources" ]

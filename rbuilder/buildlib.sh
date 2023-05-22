@@ -1,4 +1,4 @@
-#/bin/bash
+#! /bin/bash
 
 f_make_release_tarball() {
     SOURCEDIST=${BASEDIR}/${APP}-${VERSION}.tar.gz
