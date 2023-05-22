@@ -1,9 +1,5 @@
-# Tendermint images repository
+# rbuilder image repo
 
-This repo consists of the dockerfiles / packer templates which build the images used in CI/CD pipelines and more.
+This repo consists of dockerfiles and configuration scripts for building the reproducible builder image (`rbuilder`) that enables building multiplatform golang binaries.
 
-Each image has an associated protected git branch. Images will only be built on PR merges to their respective branch.
-
-Please commit any changes to master and then open a PR to the branch you would like to build.
- 
-Thank you!
+The the resulting image is pushed to docker hub and is meant to be used inside CI/CD pipelines.
