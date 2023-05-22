@@ -1,9 +1,7 @@
 name: Build & Push rbuilder
-#  Build & Push rebuilds the rbuilder docker image on every push to master
+#  Build & Push rebuilds the rbuilder docker using a manual trigger
 on:
-  push:
-    branches:
-      - master
+  workflow_dispatch:
 
 jobs:
   build:
@@ -13,16 +11,8 @@ jobs:
       - name: Prepare
         id: prep
         run: |
-          DOCKER_IMAGE=tendermintdev/rbuilder
-          VERSION=noop
-          if [[ $GITHUB_REF == refs/tags/* ]]; then
-            VERSION=${GITHUB_REF#refs/tags/}
-          elif [[ $GITHUB_REF == refs/heads/* ]]; then
-            VERSION=$(echo ${GITHUB_REF#refs/heads/} | sed -r 's#/+#-#g')
-            if [ "${{ github.event.repository.default_branch }}" = "$VERSION" ]; then
-              VERSION=latest
-            fi
-          fi
+          DOCKER_IMAGE=gaiadev/rbuilder
+          VERSION=latest
           TAGS="${DOCKER_IMAGE}:${VERSION}"
           echo ::set-output name=tags::${TAGS}
 
